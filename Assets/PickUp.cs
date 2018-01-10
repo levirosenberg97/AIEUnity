@@ -7,7 +7,7 @@ public class PickUp : MonoBehaviour {
 
     public int scoreAdded;
     public float rotationSpeed;
-    public Text scoreText;
+    
 	// Use this for initialization
 	void Start ()
     {

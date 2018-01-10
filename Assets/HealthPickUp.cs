@@ -10,14 +10,14 @@ public class HealthPickUp : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        transform.Rotate(rotationSpeed, 3, rotationSpeed / 3);
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        transform.Rotate(rotationSpeed, 3, rotationSpeed / 3);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
