@@ -11,13 +11,17 @@ public class Health : MonoBehaviour
     public Image damageImage;
     public float flashSpeed = 5f;
     public Color flashColor = new Color(1f, 0f, 0f);
+   
 
     public bool isDead = false;
     bool damaged;
+    private Rigidbody rb;
+
 
     // Use this for initialization
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         currentHealth = startHealth;
     }
 
@@ -35,7 +39,6 @@ public class Health : MonoBehaviour
         damaged = false;
     }
 
-   
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Spike")
@@ -47,7 +50,10 @@ public class Health : MonoBehaviour
             takeDamage(15);
            
         }
-
+        if (other.tag == "Fist")
+        {
+            takeDamage(5);
+        }
     }
     public void takeDamage(int amount)
     {

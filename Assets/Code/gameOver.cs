@@ -11,6 +11,14 @@ public class gameOver : MonoBehaviour {
     public BallController player1;
     public BallController player2;
     public int roundNumber = 1;
+  
+  
+  
+      
+    public Button mainMenuButton;
+    public Button nextRoundButton;
+    
+
     //public Image darken;
 
     // Update is called once per frame
@@ -20,27 +28,43 @@ public class gameOver : MonoBehaviour {
     {
         var playerAlive1 = player1.GetComponent<Health>();
         var playerAlive2 = player2.GetComponent<Health>();
-        
+
+
+        if (player1.score == 3)
+        {
+            Time.timeScale = 0;  
+            hudCanvas.gameObject.SetActive(false);
+            gameText.text = "Player 1 Wins";
+            mainMenuButton.gameObject.SetActive(true);
+            nextRoundButton.gameObject.SetActive(false);
+            gameOverCanvas.enabled = true;
+        }
+
+        if (player2.score == 3)
+        {
+            Time.timeScale = 0;
+            hudCanvas.gameObject.SetActive(false);
+            gameText.text = "Player 2 Wins";
+            mainMenuButton.gameObject.SetActive(true);
+            nextRoundButton.gameObject.SetActive(false);
+            gameOverCanvas.enabled = true;
+        }
 
         if (playerAlive1.isDead == true)
         {
-            
-            hudCanvas.enabled = false;
+            Time.timeScale = 0;
+            hudCanvas.gameObject.SetActive(false);
             gameText.text = "Player 2 Wins Round " + roundNumber;
-            gameOverCanvas.enabled = true;
-            
+            gameOverCanvas.enabled = true;           
         }
 
 
         if (playerAlive2.isDead == true)
         {
-           
-            hudCanvas.enabled = false;
+            Time.timeScale = 0;
+            hudCanvas.gameObject.SetActive(false);
             gameText.text = "Player 1 Wins Round " + roundNumber;
             gameOverCanvas.enabled = true;
-           
         }
-
-
     }
 }

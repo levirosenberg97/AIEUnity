@@ -11,9 +11,13 @@ public class NextRound : MonoBehaviour
 
     public void nextRound()
     {
+        //resets the player
         gameOverHud.player1.transform.position = new Vector3(-26.10959f, 1, -6.6f);
         gameOverHud.player2.transform.position = new Vector3(16, 1, -6.6f);
-
+        gameOverHud.player1.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        gameOverHud.player2.transform.rotation = Quaternion.Euler(0f, 180, 0f);
+        gameOverHud.player1.rb.velocity =new Vector3(0,0,0);
+        gameOverHud.player2.rb.velocity = new Vector3(0, 0, 0);
 
 
         var player1Alive = gameOverHud.player1.GetComponent<Health>();
@@ -21,19 +25,18 @@ public class NextRound : MonoBehaviour
 
         if (player1Alive.isDead == true)
         {
+            gameOverHud.player2.score++;
             player1Alive.isDead = false;
             player1Alive.gameObject.SetActive(true);
-            gameOverHud.player2.score++;
         }
         player1Alive.currentHealth = player1Alive.startHealth;
 
 
         if (player2Alive.isDead == true)
         {
-            player2Alive.isDead = false;
-            player2Alive.gameObject.SetActive(true);
             gameOverHud.player1.score++;
-            
+            player2Alive.isDead = false;
+            player2Alive.gameObject.SetActive(true);   
         }
         player2Alive.currentHealth = player2Alive.startHealth;
 
@@ -47,7 +50,9 @@ public class NextRound : MonoBehaviour
 
         scoreText.text = gameOverHud.player1.score + " - " + gameOverHud.player2.score;
 
-        gameOverHud.hudCanvas.enabled = true;
+        Time.timeScale = 1;
+
+        gameOverHud.hudCanvas.gameObject.SetActive(true);
        
     }
 	

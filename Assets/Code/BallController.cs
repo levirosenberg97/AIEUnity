@@ -16,7 +16,7 @@ public class BallController : MonoBehaviour
 
     private string movementAxisName;
     private string turnAxisName;
-    private Rigidbody rb;
+    public Rigidbody rb;
     private float movementInputValue;
     private float turnInputValue;
 
